@@ -2,6 +2,9 @@ import { Given, Then, When } from "@cucumber/cucumber";
 import { startBrowser } from "../support/browser";
 import { RegistrationPage } from "../pages/registration-page";
 
+import * as dotenv from "dotenv";
+dotenv.config();
+
 let registrationPage: RegistrationPage;
 
 Given("I am on the homepage", async () => {
@@ -62,14 +65,16 @@ When(
 When(
   "I click on email field and fill a non-registered email address with {string}",
   async function (email: string) {
-    await registrationPage.clickOnEmailInput(email);
+    const emailValue = process.env.NON_REGISTERED_EMAIL || email;
+    await registrationPage.clickOnEmailInput(emailValue);
   }
 );
 
 When(
   "I click on password field and fill a non-registered password with {string}",
   async function (password: string) {
-    await registrationPage.clickOnPasswordInput(password);
+    const passwordValue = process.env.NON_REGISTERED_PASSWORD || password;
+    await registrationPage.clickOnPasswordInput(passwordValue);
   }
 );
 

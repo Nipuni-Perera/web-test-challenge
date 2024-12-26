@@ -8,8 +8,8 @@ Feature: As a registered user I should be able to login successfully
     Then I should see email field
     Then I should see password field
     
-    When I click on email field and fill the registered email address "miketester@gmail.com"
-    When I click on password field and fill the registered password "11111111"
+    When I click on email field and fill the registered email address "<email>"
+    When I click on password field and fill the registered password "<password>"
   
     Then I should see sign in button
 

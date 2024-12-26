@@ -17,9 +17,9 @@ Feature: As a non-registered user I should be able to create an account successf
     When I click on first name field and fill the first name with "Mike"
     When I click on last name field and fill the last name with "Tester"
 
-    When I click on email field and fill a non-registered email address with "nastester@gmail.com"
+    When I click on email field and fill a non-registered email address with "<email>"
     
-    When I click on password field and fill a non-registered password with "11111111"
+    When I click on password field and fill a non-registered password with "<password>"
 
     Then I should see create account button
     When I click on create account button

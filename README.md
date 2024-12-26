@@ -71,5 +71,9 @@ The following environment variables are used in the project:
 - INTERVIEW_COOKIE_VALUE
 - DOMAIN_COOKIE_NAME
 - DOMAIN_COOKIE_VALUE
+- REGISTERED_EMAIL
+- REGISTERED_PASSWORD
+- NON_REGISTERED_EMAIL
+- NON_REGISTERED_PASSWORD
 
 These variables can be set in the `.env` file.

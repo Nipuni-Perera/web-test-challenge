@@ -2,6 +2,9 @@ import { Given, Then, When } from "@cucumber/cucumber";
 import { startBrowser } from "../support/browser";
 import { LoginPage } from "../pages/login-page";
 
+import * as dotenv from "dotenv";
+dotenv.config();
+
 let loginPage: LoginPage;
 
 Given("I open the homepage", async () => {
@@ -25,14 +28,16 @@ Then("I should see password field", async function () {
 When(
   "I click on email field and fill the registered email address {string}",
   async function (email: string) {
-    await loginPage.clickOnEmailInput(email);
+    const emailValue = process.env.REGISTERED_EMAIL || email;
+    await loginPage.clickOnEmailInput(emailValue);
   }
 );
 
 When(
   "I click on password field and fill the registered password {string}",
   async function (password: string) {
-    await loginPage.clickOnPasswordInput(password);
+    const passwordValue = process.env.REGISTERED_PASSWORD || password;
+    await loginPage.clickOnPasswordInput(passwordValue);
   }
 );
 
