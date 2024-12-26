@@ -1,0 +1,27 @@
+{
+  "name": "web-test-challenge",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "test": "npx cucumber-js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nipuni-Perera/web-test-challenge.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nipuni-Perera/web-test-challenge/issues"
+  },
+  "homepage": "https://github.com/Nipuni-Perera/web-test-challenge#readme",
+  "dependencies": {
+    "@cucumber/cucumber": "^9.6.0",
+    "@playwright/test": "^1.44.1",
+    "dotenv": "^16.4.7",
+    "playwright-bdd": "^7.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^4.9.5"
+  }
+}
