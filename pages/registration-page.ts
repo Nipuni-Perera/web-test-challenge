@@ -1,11 +1,12 @@
 import { expect, Page } from "@playwright/test";
-
 import * as dotenv from "dotenv";
+import { Locators } from "../support/locators";
 
 dotenv.config();
 
 export class RegistrationPage {
   private page: Page;
+  private registrationPageLocators = Locators.RegistrationPage;
 
   constructor(page: Page) {
     this.page = page;
@@ -18,82 +19,67 @@ export class RegistrationPage {
   }
 
   async isLoginFormVisible(): Promise<void> {
-    const loginFormLocator = this.page.locator('[name="loginForm"]');
+    const loginFormLocator = this.page.locator(this.registrationPageLocators.loginForm);
     await expect(loginFormLocator).toBeVisible();
   }
 
   async isCreateAccountLinkVisible(): Promise<void> {
-    const loginFormLocator = this.page.locator('a[href="#/signup"]');
-    await expect(loginFormLocator).toBeVisible();
-  }
-
-  async isFirstNameInputVisible(): Promise<void> {
-    const firstNameLocator = this.page.locator('[name="firstName"]');
-    await expect(firstNameLocator).toBeVisible();
-  }
-
-  async isLastNameInputVisible(): Promise<void> {
-    const lastNameLocator = this.page.locator('[name="lastName"]');
-    await expect(lastNameLocator).toBeVisible();
-  }
-
-  async isEmailFieldVisible(): Promise<void> {
-    const emailLocator = this.page.locator('[name="email"]');
-    await expect(emailLocator).toBeVisible();
-  }
-
-  async isPasswordFieldVisible(): Promise<void> {
-    const passwordLocator = this.page.locator('input[type="password"]');
-    await expect(passwordLocator).toBeVisible();
+    const createAccountLinkLocator = this.page.locator(this.registrationPageLocators.createAccountLink);
+    await expect(createAccountLinkLocator).toBeVisible();
   }
 
   async clickOnCreateAccountLink(): Promise<void> {
-    const createAccountLink = this.page.locator("text=Create Account");
+    const createAccountLink = this.page.locator(this.registrationPageLocators.createAccountLinkText);
     await createAccountLink.click({ force: true });
   }
 
+  async isFirstNameInputVisible(): Promise<void> {
+    const firstNameLocator = this.page.locator(this.registrationPageLocators.firstNameInput);
+    await expect(firstNameLocator).toBeVisible();
+  }
+
   async clickOnFirstNameInput(firstName: string): Promise<void> {
-    const firstNameInput = this.page.locator('[name="firstName"]');
-    await firstNameInput.waitFor({ state: "visible" });
+    const firstNameInput = this.page.locator(this.registrationPageLocators.firstNameInput);
     await firstNameInput.fill(firstName);
   }
 
+  async isLastNameInputVisible(): Promise<void> {
+    const lastNameLocator = this.page.locator(this.registrationPageLocators.lastNameInput);
+    await expect(lastNameLocator).toBeVisible();
+  }
+
   async clickOnLastNameInput(lastName: string): Promise<void> {
-    const lastNameInput = this.page.locator('[name="lastName"]');
-    await lastNameInput.waitFor({ state: "visible" });
+    const lastNameInput = this.page.locator(this.registrationPageLocators.lastNameInput);
     await lastNameInput.fill(lastName);
   }
 
+  async isEmailFieldVisible(): Promise<void> {
+    const emailLocator = this.page.locator(this.registrationPageLocators.emailInput);
+    await expect(emailLocator).toBeVisible();
+  }
+
   async clickOnEmailInput(email: string): Promise<void> {
-    const emailInput = this.page.locator('[name="email"]');
-    await emailInput.waitFor({ state: "visible" });
+    const emailInput = this.page.locator(this.registrationPageLocators.emailInput);
     await emailInput.fill(email);
   }
 
+  async isPasswordFieldVisible(): Promise<void> {
+    const passwordLocator = this.page.locator(this.registrationPageLocators.passwordInput);
+    await expect(passwordLocator).toBeVisible();
+  }
+
   async clickOnPasswordInput(password: string): Promise<void> {
-    const passwordInput = this.page.locator('input[type="password"]');
-    await passwordInput.waitFor({ state: "visible" });
+    const passwordInput = this.page.locator(this.registrationPageLocators.passwordInput);
     await passwordInput.fill(password);
   }
 
   async displayCreateAccountButton(): Promise<void> {
-    const createAccountButton = this.page.locator('button[type="submit"]');
-    await createAccountButton.waitFor({ state: "visible" });
+    const createAccountButton = this.page.locator(this.registrationPageLocators.createAccountButton);
     await expect(createAccountButton).toBeVisible();
   }
 
   async clickOnCreateAccountButton(): Promise<void> {
-    const createAccountButton = this.page.locator('button[type="submit"]');
-
-    await createAccountButton.waitFor({ state: "visible" });
-    await this.page.waitForFunction((selector) => {
-      const button = document.querySelector(selector) as HTMLButtonElement;
-      return button && !button.disabled;
-    }, 'button[type="submit"]');
-
-    expect(await createAccountButton.isVisible()).toBeTruthy();
-    expect(await createAccountButton.isEnabled()).toBeTruthy();
-
+    const createAccountButton = this.page.locator(this.registrationPageLocators.createAccountButton);
     await createAccountButton.click();
   }
 
